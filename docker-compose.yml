@@ -1,0 +1,28 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spookiui-web:latest
+    container_name: spookiui-web
+    restart: unless-stopped
+    # Host port 8080 -> nginx on 80. Point your reverse proxy / TLS terminator
+    # for spookiui.rooksnet.uk at this port (or change the left-hand side).
+    ports:
+      - "8080:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+    # --- If you use Traefik as your reverse proxy, uncomment the labels below
+    #     and attach this service to your proxy network instead of publishing
+    #     the port above. ---
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.spookiui.rule=Host(`spookiui.rooksnet.uk`)"
+    #   - "traefik.http.routers.spookiui.entrypoints=websecure"
+    #   - "traefik.http.routers.spookiui.tls.certresolver=letsencrypt"
+    #   - "traefik.http.services.spookiui.loadbalancer.server.port=80"

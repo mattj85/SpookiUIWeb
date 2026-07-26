@@ -39,6 +39,38 @@ host (GitHub Pages, Netlify, Vercel, S3, …). `vite.config.js` uses a **relativ
 base** (`base: './'`) so the build also works when served from a sub-path such
 as a GitHub Pages project site.
 
+## Docker
+
+The site ships with a multi-stage `Dockerfile` (Node build → nginx serve) and a
+`docker-compose.yml`. The image builds the static bundle and serves it with
+nginx, which is configured for the `spookiui.rooksnet.uk` host.
+
+```bash
+docker compose up -d --build        # build + run, served on http://localhost:8080
+docker compose logs -f              # follow logs
+docker compose down                 # stop and remove
+```
+
+Or with plain Docker:
+
+```bash
+docker build -t spookiui-web .
+docker run -d -p 8080:80 --name spookiui-web spookiui-web
+```
+
+The container listens on port **80** internally and is published on **8080** by
+compose. Put your TLS-terminating reverse proxy (nginx, Traefik, Caddy,
+Cloudflare Tunnel, …) in front of it and route `spookiui.rooksnet.uk` there —
+`nginx.conf` already names that host, and commented Traefik labels are included
+in `docker-compose.yml` if you prefer label-based routing.
+
+### Accepted hosts
+
+- **Production (nginx):** `nginx.conf` sets `server_name spookiui.rooksnet.uk`.
+- **Dev / preview (Vite):** `vite.config.js` lists `spookiui.rooksnet.uk` (and
+  `.rooksnet.uk`) under `allowedHosts`, so `npm run dev` / `npm run preview`
+  also work when reached through that domain.
+
 ## Project structure
 
 ```
