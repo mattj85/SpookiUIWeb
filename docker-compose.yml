@@ -9,7 +9,7 @@ services:
     # Host port 8080 -> nginx on 80. Point your reverse proxy / TLS terminator
     # for spookiui.rooksnet.uk at this port (or change the left-hand side).
     ports:
-      - "8080:80"
+      - "8585:80"
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
       interval: 30s
