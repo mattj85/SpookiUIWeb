@@ -625,13 +625,15 @@ kbd {
   padding: 0.6rem 0.4rem;
 }
 .keytable table {
-  color: var(--subtext1);
+  --bs-table-color: #ffffff;
+  color: #ffffff;
   margin: 0;
 }
 .keytable td {
   padding: 0.42rem 0.75rem;
   vertical-align: middle;
   border-bottom: 1px solid rgba(205, 214, 244, 0.05);
+  color: #ffffff;
 }
 .keytable tr:last-child td {
   border-bottom: none;
@@ -642,7 +644,7 @@ kbd {
 }
 .keytable__action {
   font-size: 0.92rem;
-  color: var(--subtext0);
+  color: #ffffff;
 }
 .cli-example {
   margin-bottom: 1.2rem;
