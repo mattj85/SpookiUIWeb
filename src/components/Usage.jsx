@@ -1,11 +1,20 @@
-import { useState } from 'react'
-import { Row, Col, Nav, NavItem, NavLink, TabContent, TabPane, Table } from 'reactstrap'
-import Section from './Section.jsx'
-import CodeBlock from './CodeBlock.jsx'
-import { KEYS, CLI_EXAMPLES } from '../data/content.js'
+import { useState } from "react";
+import {
+  Row,
+  Col,
+  Nav,
+  NavItem,
+  NavLink,
+  TabContent,
+  TabPane,
+  Table,
+} from "reactstrap";
+import Section from "./Section.jsx";
+import CodeBlock from "./CodeBlock.jsx";
+import { KEYS, CLI_EXAMPLES } from "../data/content.js";
 
 export default function Usage() {
-  const [tab, setTab] = useState('tui')
+  const [tab, setTab] = useState("tui");
 
   return (
     <Section
@@ -18,10 +27,10 @@ export default function Usage() {
         <NavItem>
           <NavLink
             href="#"
-            active={tab === 'tui'}
+            active={tab === "tui"}
             onClick={(e) => {
-              e.preventDefault()
-              setTab('tui')
+              e.preventDefault();
+              setTab("tui");
             }}
           >
             Interactive TUI
@@ -30,10 +39,10 @@ export default function Usage() {
         <NavItem>
           <NavLink
             href="#"
-            active={tab === 'cli'}
+            active={tab === "cli"}
             onClick={(e) => {
-              e.preventDefault()
-              setTab('cli')
+              e.preventDefault();
+              setTab("cli");
             }}
           >
             Scriptable CLI
@@ -47,14 +56,15 @@ export default function Usage() {
             <Col lg="5">
               <div className="prose">
                 <p>
-                  Run <code>./spookiui.py</code> to open the terminal UI. It’s a three-pane layout —
-                  categories, options and a live detail pane — with modal editors typed to each kind
-                  of option.
+                  Run <code>spookiui.py</code> to open the terminal UI. It’s a
+                  three-pane layout — categories, options and a live detail pane
+                  — with modal editors typed to each kind of option.
                 </p>
                 <p className="prose__quiet">
-                  Booleans toggle instantly; enums, fonts and themes open searchable pickers with
-                  live preview; bounded numbers get visual sliders; and keybindings use a guided
-                  builder that validates before adding.
+                  Booleans toggle instantly; enums, fonts and themes open
+                  searchable pickers with live preview; bounded numbers get
+                  visual sliders; and keybindings use a guided builder that
+                  validates before adding.
                 </p>
               </div>
             </Col>
@@ -81,8 +91,8 @@ export default function Usage() {
           <Row className="g-4">
             <Col lg="6">
               <p className="prose__quiet mb-3">
-                Everything the TUI does is available non-interactively — perfect for dotfiles,
-                scripts and pre-commit hooks.
+                Everything the TUI does is available non-interactively — perfect
+                for dotfiles, scripts and pre-commit hooks.
               </p>
               {CLI_EXAMPLES.map((ex) => (
                 <div className="cli-example" key={ex.cmd}>
@@ -112,5 +122,5 @@ themes | fonts | path`}</CodeBlock>
         </TabPane>
       </TabContent>
     </Section>
-  )
+  );
 }

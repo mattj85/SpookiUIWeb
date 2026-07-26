@@ -1,31 +1,31 @@
-import { Row, Col, Card, CardBody } from 'reactstrap'
-import Section from './Section.jsx'
-import CodeBlock from './CodeBlock.jsx'
+import { Row, Col, Card, CardBody } from "reactstrap";
+import Section from "./Section.jsx";
+import CodeBlock from "./CodeBlock.jsx";
 
 const METHODS = [
   {
-    tag: 'Recommended',
-    title: 'Run straight from the repo',
-    body: 'No dependencies beyond the Python 3.8+ standard library. Clone and run.',
+    tag: "Recommended",
+    title: "Run straight from the repo",
+    body: "No dependencies beyond the Python 3.8+ standard library. Clone and run.",
     code: `git clone https://github.com/mattj85/SpookiUI.git
 cd SpookiUI
-./spookiui.py`,
+spookiui.py`,
   },
   {
-    tag: 'PATH command',
-    title: 'Use the installer',
-    body: 'Checks prerequisites and drops a spookiui command on your PATH.',
+    tag: "PATH command",
+    title: "Use the installer",
+    body: "Checks prerequisites and drops a spookiui command on your PATH.",
     code: `./install.sh                    # installs to ~/.local/bin
 PREFIX=/usr/local ./install.sh  # system-wide (may need sudo)`,
   },
   {
-    tag: 'macOS & Linux',
-    title: 'Homebrew',
-    body: 'Once the tap is published, install and upgrade with brew.',
+    tag: "macOS & Linux",
+    title: "Homebrew",
+    body: "Once the tap is published, install and upgrade with brew.",
     code: `brew install mattj85/spookiui/spookiui
 brew upgrade spookiui`,
   },
-]
+];
 
 export default function Install() {
   return (
@@ -54,18 +54,20 @@ export default function Install() {
         <h4 className="install__reqtitle">Requirements</h4>
         <ul>
           <li>
-            <strong>Python 3.8+</strong> — standard library only, no third-party packages.
+            <strong>Python 3.8+</strong> — standard library only, no third-party
+            packages.
           </li>
           <li>
-            The <code>ghostty</code> binary on your <code>PATH</code> (or in{' '}
+            The <code>ghostty</code> binary on your <code>PATH</code> (or in{" "}
             <code>/Applications/Ghostty.app</code>).
           </li>
           <li>
-            For live reload: Ghostty running, plus <strong>Accessibility</strong> permission on
-            macOS, or <code>pgrep</code> on Linux (present on essentially every distro).
+            For live reload: Ghostty running, plus{" "}
+            <strong>Accessibility</strong> permission on macOS, or{" "}
+            <code>pgrep</code> on Linux (present on essentially every distro).
           </li>
         </ul>
       </div>
     </Section>
-  )
+  );
 }
