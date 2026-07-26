@@ -4,7 +4,7 @@
 export const REPO = 'mattj85/SpookiUI'
 export const REPO_URL = `https://github.com/${REPO}`
 export const GHOSTTY_URL = 'https://ghostty.org'
-export const VERSION = '1.11.1'
+export const VERSION = '1.12.0'
 
 export const NAV_LINKS = [
   { id: 'what', label: 'What it is' },
@@ -117,6 +117,8 @@ export const TREATS = [
   { name: 'Chomper', desc: 'A chomping wedge eats a row of pellets' },
   { name: 'Barrels', desc: 'Barrels tumble down slanted girders' },
   { name: 'Jumper', desc: 'A hero hops beneath scrolling blocks' },
+  { name: 'Dasher', desc: 'A blue speedster spin-dashes past, scattering gold rings' },
+  { name: 'Lemmings', desc: 'A line of green-haired critters marches along the ground' },
 ]
 
 export const SEASONAL_TREATS = [
