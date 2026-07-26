@@ -4,7 +4,7 @@
 export const REPO = "mattj85/SpookiUI";
 export const REPO_URL = `https://github.com/${REPO}`;
 export const GHOSTTY_URL = "https://ghostty.org";
-export const VERSION = "1.12.0";
+export const VERSION = "1.13.0";
 
 export const NAV_LINKS = [
   { id: "what", label: "What it is" },
@@ -59,6 +59,11 @@ export const FEATURES = [
     body: "A bundle of nostalgic animated background shaders (Matrix Rain, Plasma, Fireworks, seasonal packs…). All off by default, one at a time, and tuned to keep your text legible.",
   },
   {
+    icon: "🛠️",
+    title: "Utils — one-shot fixes",
+    body: "Small maintenance actions that aren’t Ghostty options. Fix SSH ends garbled remote sessions by adding a safe, idempotent TERM=xterm-256color ssh alias — nothing on the remote host is touched.",
+  },
+  {
     icon: "⌨️",
     title: "Fully scriptable CLI",
     body: "Everything the UI does is available non-interactively: get, set, list, doctor, profiles, treats and more — perfect for dotfiles and pre-commit hooks.",
@@ -96,9 +101,12 @@ export const KEYS = [
   { key: "s", action: "Save + reload now · r re-trigger reload" },
   { key: "R", action: "Revert everything to session start" },
   { key: "X", action: "Wipe config & restore all Ghostty defaults" },
+  { key: "U", action: "Update SpookiUI in place to the latest release" },
   { key: "p", action: "Profiles — save / load / delete named configs" },
   { key: "c", action: "Config check (doctor) — health-check for issues" },
+  { key: "v", action: "Utils — one-shot fixes, e.g. Fix SSH" },
   { key: "t", action: "Treats — animated background shaders" },
+  { key: "d", action: "Show everything you’ve changed" },
   { key: "?", action: "Help · q quit" },
 ];
 
@@ -136,16 +144,22 @@ export const TREATS = [
   { name: "Plasma", desc: "A rolling demoscene / After Dark plasma field" },
   { name: "Lava Lamp", desc: "Slow rising metaball blobs" },
   { name: "Fireworks", desc: "Rockets bursting into fading sparks" },
-  { name: "Chomper", desc: "A chomping wedge eats a row of pellets" },
+  {
+    name: "Chomper",
+    desc: "A chomping wedge eats a row of pellets, chased by a pixel-art ghost",
+  },
   { name: "Barrels", desc: "Barrels tumble down slanted girders" },
-  { name: "Jumper", desc: "A hero hops beneath scrolling blocks" },
+  {
+    name: "Jumper",
+    desc: "An NES-style plumber bumps ? and brick blocks past hills, clouds and a shuffling Goomba",
+  },
   {
     name: "Dasher",
     desc: "A blue speedster spin-dashes past, scattering gold rings",
   },
   {
     name: "Lemmings",
-    desc: "A line of green-haired critters marches along the ground",
+    desc: "Chunky pixel-art critters trudge up and down a stepped staircase",
   },
 ];
 

@@ -38,7 +38,8 @@ export default function Treats() {
       <div className="treats__foot">
         Every treat composites additively through a tight luminance mask, so only the darkest
         background pixels are tinted — your text, cursor and borders are left alone. A single
-        vibrancy control fades the effect up or down, and only the focused window ever animates.
+        vibrancy control fades the effect up or down, and animation is focus-only — unfocused
+        windows show the plain terminal, or dim and desaturate if you enable “dim unfocused”.
       </div>
     </Section>
   )
