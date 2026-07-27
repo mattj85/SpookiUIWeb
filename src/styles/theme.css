@@ -433,7 +433,7 @@ kbd {
 .loop {
   list-style: none;
   counter-reset: none;
-  margin: 0;
+  margin: 0 0 0 2.7rem;
   padding: 0;
   border-left: 2px dashed rgba(148, 226, 213, 0.3);
 }
@@ -716,7 +716,6 @@ kbd {
   padding-bottom: 4rem;
 }
 .faq {
-  max-width: 52rem;
   --bs-accordion-bg: transparent;
   --bs-accordion-border-color: rgba(205, 214, 244, 0.09);
   --bs-accordion-border-radius: var(--radius-sm);
