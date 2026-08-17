@@ -27,9 +27,9 @@ export default function About() {
               what’s relevant to the machine you’re on.
             </p>
             <p className="prose__quiet">
-              It’s a single Python file with no third-party dependencies. Clone the repo and run
-              it, or drop a <code>spookiui</code> command on your <code>PATH</code> with the
-              installer.
+              It’s a single Python file with no third-party dependencies. Install it with{' '}
+              <code>brew</code>, clone the repo and run it, or drop a <code>spookiui</code> command
+              on your <code>PATH</code> with the installer.
             </p>
           </div>
         </Col>

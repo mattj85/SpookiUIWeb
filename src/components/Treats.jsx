@@ -39,7 +39,9 @@ export default function Treats() {
         Every treat composites additively through a tight luminance mask, so only the darkest
         background pixels are tinted — your text, cursor and borders are left alone. A single
         vibrancy control fades the effect up or down, and animation is focus-only — unfocused
-        windows show the plain terminal, or dim and desaturate if you enable “dim unfocused”.
+        windows show the plain terminal, or dim and desaturate if you enable “dim unfocused”. Any{' '}
+        <code>custom-shader-animation</code> you had set is borrowed, not taken: it is stashed on the
+        first treat and put back once none of SpookiUI’s shaders are left.
       </div>
     </Section>
   )

@@ -552,6 +552,114 @@ kbd {
   margin-bottom: 0;
 }
 
+/* ------------------------------------------------- macOS Homebrew walkthrough */
+.brewguide {
+  margin-top: 2.5rem;
+  padding: 1.8rem 1.8rem 1.6rem;
+  background: rgba(24, 24, 37, 0.6);
+  border: var(--border);
+  border-radius: var(--radius);
+}
+.brewguide__head {
+  margin-bottom: 1.6rem;
+}
+.brewguide__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+.brewguide__lede {
+  font-size: 0.95rem;
+  color: var(--subtext0);
+  max-width: 52rem;
+  margin: 0;
+}
+.brewsteps {
+  list-style: none;
+  margin: 0 0 0 2.7rem;
+  padding: 0;
+  border-left: 2px dashed rgba(250, 179, 135, 0.28);
+}
+.brewstep {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0 0 1.6rem 1.6rem;
+  position: relative;
+}
+.brewstep:last-child {
+  padding-bottom: 0;
+}
+.brewstep__num {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  margin-left: -2.7rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--base);
+  border: 2px solid var(--peach);
+  color: var(--peach);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+.brewstep__body {
+  flex: 1 1 auto;
+  /* keeps a long snippet scrolling inside the flex child instead of stretching it */
+  min-width: 0;
+}
+.brewstep__title {
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+.brewstep__note {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--overlay1);
+  border: 1px solid rgba(205, 214, 244, 0.14);
+  border-radius: 20px;
+  padding: 0.15em 0.7em;
+}
+.brewstep__detail {
+  font-size: 0.92rem;
+  color: var(--subtext0);
+  margin: 0.3rem 0 0.7rem;
+}
+.brewguide__foot {
+  margin: 1.6rem 0 0;
+  font-size: 0.9rem;
+  color: var(--overlay1);
+}
+
+@media (max-width: 575.98px) {
+  .brewguide {
+    padding: 1.3rem 1rem;
+  }
+  .brewsteps {
+    margin-left: 1.5rem;
+  }
+  .brewstep {
+    gap: 0.8rem;
+    padding-left: 1.1rem;
+  }
+  .brewstep__num {
+    width: 28px;
+    height: 28px;
+    margin-left: -2.05rem;
+    font-size: 0.8rem;
+  }
+}
+
 /* -------------------------------------------------------------- code block */
 .codeblock {
   background: var(--crust);

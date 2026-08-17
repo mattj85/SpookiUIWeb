@@ -66,6 +66,11 @@ export default function Usage() {
                   visual sliders; and keybindings use a guided builder that
                   validates before adding.
                 </p>
+                <p className="prose__quiet">
+                  Every option shows its current value beside its name, every
+                  pane scrolls, and config lookups are indexed — so it stays
+                  responsive even on a long config.
+                </p>
               </div>
             </Col>
             <Col lg="7">

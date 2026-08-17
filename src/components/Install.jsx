@@ -1,31 +1,12 @@
 import { Row, Col, Card, CardBody } from "reactstrap";
 import Section from "./Section.jsx";
 import CodeBlock from "./CodeBlock.jsx";
-
-const METHODS = [
-  {
-    tag: "Recommended",
-    title: "Run straight from the repo",
-    body: "No dependencies beyond the Python 3.8+ standard library. Clone and run.",
-    code: `git clone https://github.com/mattj85/SpookiUI.git
-cd SpookiUI
-spookiui.py`,
-  },
-  {
-    tag: "PATH command",
-    title: "Use the installer",
-    body: "Checks prerequisites and drops a spookiui command on your PATH.",
-    code: `./install.sh                    # installs to ~/.local/bin
-PREFIX=/usr/local ./install.sh  # system-wide (may need sudo)`,
-  },
-  {
-    tag: "macOS & Linux",
-    title: "Homebrew",
-    body: "Once the tap is published, install and upgrade with brew.",
-    code: `brew install mattj85/spookiui/spookiui
-brew upgrade spookiui`,
-  },
-];
+import {
+  INSTALL_METHODS,
+  MACOS_STEPS,
+  HOMEBREW_URL,
+  TAP_URL,
+} from "../data/content.js";
 
 export default function Install() {
   return (
@@ -36,7 +17,7 @@ export default function Install() {
       lede="SpookiUI is a single script — no build step, no package manifest, no pip installs. Pick whichever route suits you."
     >
       <Row className="g-4">
-        {METHODS.map((m) => (
+        {INSTALL_METHODS.map((m) => (
           <Col lg="4" key={m.title}>
             <Card className="install h-100">
               <CardBody>
@@ -50,12 +31,55 @@ export default function Install() {
         ))}
       </Row>
 
+      <div className="brewguide">
+        <div className="brewguide__head">
+          <h3 className="brewguide__title">
+            <span aria-hidden="true">🍎</span> macOS, step by step with Homebrew
+          </h3>
+          <p className="brewguide__lede">
+            From an empty machine to a live-reloading TUI. The formula lives in
+            the{" "}
+            <a href={TAP_URL} target="_blank" rel="noreferrer">
+              mattj85/spookiui tap
+            </a>{" "}
+            and is installed with{" "}
+            <a href={HOMEBREW_URL} target="_blank" rel="noreferrer">
+              Homebrew
+            </a>
+            , which brings its own Python — nothing is added to your system
+            Python.
+          </p>
+        </div>
+
+        <ol className="brewsteps">
+          {MACOS_STEPS.map((s, i) => (
+            <li className="brewstep" key={s.title}>
+              <span className="brewstep__num">{i + 1}</span>
+              <div className="brewstep__body">
+                <div className="brewstep__title">
+                  {s.title}
+                  {s.note && <span className="brewstep__note">{s.note}</span>}
+                </div>
+                <p className="brewstep__detail">{s.detail}</p>
+                <CodeBlock label="shell">{s.code}</CodeBlock>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <p className="brewguide__foot">
+          Uninstalling is <code>brew uninstall spookiui</code> (and{" "}
+          <code>brew untap mattj85/spookiui</code> to drop the tap). Your Ghostty
+          config, backups and saved profiles are left exactly where they are.
+        </p>
+      </div>
+
       <div className="install__req">
         <h4 className="install__reqtitle">Requirements</h4>
         <ul>
           <li>
             <strong>Python 3.8+</strong> — standard library only, no third-party
-            packages.
+            packages. The Homebrew formula provides its own.
           </li>
           <li>
             The <code>ghostty</code> binary on your <code>PATH</code> (or in{" "}

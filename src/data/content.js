@@ -4,7 +4,10 @@
 export const REPO = "mattj85/SpookiUI";
 export const REPO_URL = `https://github.com/${REPO}`;
 export const GHOSTTY_URL = "https://ghostty.org";
-export const VERSION = "1.13.0";
+export const TAP = "mattj85/homebrew-spookiui";
+export const TAP_URL = `https://github.com/${TAP}`;
+export const HOMEBREW_URL = "https://brew.sh";
+export const VERSION = "1.14.0";
 
 export const NAV_LINKS = [
   { id: "what", label: "What it is" },
@@ -22,6 +25,76 @@ export const HIGHLIGHTS = [
   { value: "MIT", label: "open source licence" },
 ];
 
+// Install routes, rendered as the three cards in the Install section.
+export const INSTALL_METHODS = [
+  {
+    tag: "Recommended on macOS",
+    title: "Homebrew",
+    body: "The tap is live. brew brings its own Python, puts a spookiui command on your PATH and handles upgrades.",
+    code: `brew install mattj85/spookiui/spookiui
+brew upgrade spookiui`,
+  },
+  {
+    tag: "Any platform",
+    title: "Run straight from the repo",
+    body: "No dependencies beyond the Python 3.8+ standard library. Clone and run.",
+    code: `git clone ${REPO_URL}.git
+cd SpookiUI
+./spookiui.py`,
+  },
+  {
+    tag: "PATH command",
+    title: "Use the installer",
+    body: "Checks prerequisites and symlinks a spookiui command onto your PATH.",
+    code: `./install.sh                    # installs to ~/.local/bin
+PREFIX=/usr/local ./install.sh  # system-wide (may need sudo)`,
+  },
+];
+
+// Step-by-step Homebrew walkthrough for macOS, from nothing installed to a
+// live-reloading TUI.
+export const MACOS_STEPS = [
+  {
+    title: "Install Homebrew",
+    note: "Skip if you have brew",
+    detail:
+      "Homebrew is the package manager the rest of these steps use. Run brew --version first — if it prints a version, you already have it.",
+    code: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+  },
+  {
+    title: "Install Ghostty",
+    note: "Skip if you have Ghostty",
+    detail:
+      "SpookiUI configures Ghostty, so the app has to be there. The cask drops it in /Applications, where SpookiUI looks if ghostty isn’t on your PATH.",
+    code: "brew install --cask ghostty",
+  },
+  {
+    title: "Install SpookiUI from the tap",
+    detail:
+      "One command taps mattj85/spookiui and installs the formula. Homebrew pulls in its own Python, so nothing is added to your system Python and there are still no pip installs.",
+    code: `brew install mattj85/spookiui/spookiui
+spookiui --version    # SpookiUI v${VERSION}`,
+  },
+  {
+    title: "Grant Accessibility permission",
+    detail:
+      "Live reload works by clicking Ghostty’s Reload Configuration menu item via AppleScript, which macOS gates behind Accessibility. Tick Ghostty — plus any other terminal you launch SpookiUI from — in System Settings → Privacy & Security → Accessibility.",
+    code: 'open "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"',
+  },
+  {
+    title: "Run it inside a Ghostty window",
+    detail:
+      "Launch SpookiUI from Ghostty itself and the very terminal you’re in repaints as you edit. Without the permission above your changes are still written and validated — you just trigger the reload yourself.",
+    code: "spookiui",
+  },
+  {
+    title: "Keep it up to date",
+    detail:
+      "The in-app updater spots a Homebrew install and defers to brew, so upgrade the brew way. SpookiUI still tells you when a new release exists.",
+    code: "brew update && brew upgrade spookiui",
+  },
+];
+
 export const FEATURES = [
   {
     icon: "🔴",
@@ -31,7 +104,7 @@ export const FEATURES = [
   {
     icon: "🛡️",
     title: "Safe by construction",
-    body: "Every change is validated by Ghostty itself (ghostty +validate-config) before it is saved. Invalid values are rejected and rolled back, so a bad edit never reaches your config.",
+    body: "One code path handles every write: snapshot, validate with Ghostty itself (ghostty +validate-config), write, reload, roll back on failure. Invalid values never reach your config — and there is no second path that could skip a step.",
   },
   {
     icon: "↩️",
@@ -41,17 +114,17 @@ export const FEATURES = [
   {
     icon: "🔍",
     title: "Every option, discovered dynamically",
-    body: "Options are never hard-coded. They are read from your installed Ghostty at startup, so the tool always matches your version. Settings for the other OS are hidden automatically.",
+    body: "Options are never hard-coded. They are read from your installed Ghostty at startup, so the tool always matches your version, and each one lists its current value beside its name. Settings for the other OS are hidden automatically.",
   },
   {
     icon: "🎨",
     title: "Typed editors with live preview",
-    body: "Themes show a live colour card, fonts and enums open searchable pickers, bounded numbers get visual sliders, and keybindings use a guided builder — all previewed before you commit.",
+    body: "Themes show a live colour card, fonts and enums open searchable pickers, bounded numbers get visual sliders, and keybindings use a guided builder — all previewed before you commit. List editors only ever save your own entries; Ghostty’s defaults sit below them, read-only, one keypress from being copied down to tweak.",
   },
   {
     icon: "🗂️",
     title: "Profiles & a config doctor",
-    body: "Save named snapshots of your whole config and flip between light and dark instantly. The built-in doctor health-checks for duplicates, unknown keys and keybind clashes.",
+    body: "Save named snapshots of your whole config and flip between light and dark instantly. The built-in doctor health-checks for duplicates, unknown keys, redundant lines that only repeat a default, and keybind clashes.",
   },
   {
     icon: "👻",
@@ -194,6 +267,14 @@ export const FAQ = [
   {
     q: "Do I need to install any Python packages?",
     a: "No. SpookiUI is a single script that runs on the Python 3.8+ standard library — no third-party dependencies, no pip installs, no build step. The only external requirement is the ghostty binary on your PATH (or in /Applications/Ghostty.app).",
+  },
+  {
+    q: "Can I install it with Homebrew?",
+    a: "Yes — the tap is published, so brew install mattj85/spookiui/spookiui is all it takes on macOS, or on Linux if you use Homebrew there. Homebrew pulls in its own Python for it, and upgrades come from brew upgrade spookiui. There is a full step-by-step macOS walkthrough in the Install section above.",
+  },
+  {
+    q: "Will it rewrite parts of my config I didn’t touch?",
+    a: "No. Single-value edits are made in place, preserving your comments and layout, and anything new goes under a clearly-marked “# added by SpookiUI” section. List options such as keybind save only the entries you added — Ghostty’s own defaults are shown read-only and never written to your file. Enabling a treat borrows custom-shader-animation rather than taking it: whatever was there is stashed and restored once no SpookiUI shader is left.",
   },
   {
     q: "Is it safe to point it at my real config?",

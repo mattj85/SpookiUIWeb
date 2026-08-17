@@ -11,8 +11,8 @@ export default function CtaFooter() {
               <span className="grad-text">Make Ghostty yours</span> — live.
             </h2>
             <p className="cta__lede">
-              Clone the repo and run one command. No dependencies, no build step, and every change
-              validated and reversible.
+              One <code>brew install</code> on macOS, or clone the repo and run it anywhere. No
+              dependencies, no build step, and every change validated and reversible.
             </p>
             <div className="cta__actions">
               <Button color="primary" size="lg" href={REPO_URL} target="_blank" rel="noreferrer">
